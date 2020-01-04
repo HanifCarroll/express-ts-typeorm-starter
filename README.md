@@ -8,20 +8,20 @@ I wasn't planning on people using this template, but if it helps you, then by al
 
 If you're going to use this template, you'll need a .env file in the project root (next to package.json) with the following values:
 
-JWT_SECRET=
-DB_TYPE= 
-DB_HOST=
-DB_USER=
-DB_PASSWORD=
-DB_NAME=
+JWT_SECRET=\
+DB_TYPE=\
+DB_HOST=\
+DB_USER=\
+DB_PASSWORD=\
+DB_NAME=\
 DB_PORT=
 
 Example:
 
-JWT_SECRET=ssssh
-DB_TYPE=postgres
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=root
-DB_NAME=media
+JWT_SECRET=ssssh\
+DB_TYPE=postgres\
+DB_HOST=localhost\
+DB_USER=root\
+DB_PASSWORD=root\
+DB_NAME=media\
 DB_PORT=5432
