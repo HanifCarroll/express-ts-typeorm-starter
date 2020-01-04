@@ -10,7 +10,7 @@ export class UserService {
 
   public async findAll(): Promise<User[]> {
     const users = await this.userRepository.find({
-      select: ['id', 'username', 'role'] //We dont want to send the passwords on response
+      select: ['id', 'username', 'role']
     });
 
     return users;
