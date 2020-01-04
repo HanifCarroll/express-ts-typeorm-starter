@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import authRoutes from './packages/auth/authRoutes';
-import userRoutes from './packages/user/userRoutes';
+import { authRouter } from './packages/auth';
+import { userRouter } from './packages/user';
 
 const routes = Router();
 
-routes.use('/auth', authRoutes);
-routes.use('/user', userRoutes);
+routes.use('/auth', authRouter);
+routes.use('/user', userRouter);
 routes.use('/', (req, res) => res.json({ success: 'hooray!' }));
 
-export default routes;
+export { routes };

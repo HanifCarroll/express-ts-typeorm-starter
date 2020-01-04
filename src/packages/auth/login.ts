@@ -19,13 +19,11 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     res.status(401).send();
   }
 
-  //Check if encrypted password match
   if (!user.checkPassword(password)) {
     res.status(401).send();
     return;
   }
 
-  //Sing JWT, valid for 1 hour
   const token = jwt.sign(
     {
       userId: user.id,
@@ -35,6 +33,5 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     { expiresIn: '1h' },
   );
 
-  //Send the jwt in the response
   res.send(token);
 };

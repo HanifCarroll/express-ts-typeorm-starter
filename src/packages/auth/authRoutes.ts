@@ -3,9 +3,10 @@ import { checkJwt } from '../../middlewares/checkJwt';
 import { login } from './login';
 import { changePassword } from './changePassword';
 
-const router = Router();
-router.post('/login', login);
+const authRouter = Router();
 
-router.post('/change-password', [checkJwt], changePassword);
+authRouter.post('/login', login);
 
-export default router;
+authRouter.post('/change-password', [checkJwt], changePassword);
+
+export { authRouter };

@@ -4,7 +4,7 @@ import { UserService } from './userService';
 
 export const deleteUser = async (req: Request, res: Response): Promise<void> => {
   const userService = new UserService();
-  const id = req.params.id;
+  const id = Number(req.params.id);
   let user: User;
 
   try {

@@ -16,7 +16,7 @@ export class UserService {
     return users;
   }
 
-  public async findById(id: number | string): Promise<User> {
+  public async findById(id: number): Promise<User> {
     const user = await this.userRepository.findOneOrFail({
       where: { id },
       select: ['id', 'username', 'role'],
@@ -28,7 +28,7 @@ export class UserService {
   public async findByUsername(username: string): Promise<User> {
     const user = await this.userRepository.findOneOrFail({
       where: { username },
-      select: ['id', 'username', 'role'],
+      select: ['id', 'username', 'password', 'role'],
     });
 
     return user;

@@ -6,21 +6,16 @@ import { postUser } from './postUser';
 import { patchUser } from './patchUser';
 import { deleteUser } from './deleteUser';
 
-const router = Router();
+const userRouter = Router();
 
-//Get all users
-router.get('/', [checkJwt, checkRole(['ADMIN'])], getUsers);
+userRouter.get('/', [checkJwt, checkRole(['ADMIN'])], getUsers);
 
-// Get one user
-router.get('/:id([0-9]+)', [checkJwt, checkRole(['ADMIN'])], getUser);
+userRouter.get('/:id([0-9]+)', [checkJwt, checkRole(['ADMIN'])], getUser);
 
-//Create a new user
-router.post('/', postUser);
+userRouter.post('/', postUser);
 
-//Edit one user
-router.patch('/:id([0-9]+)', [checkJwt, checkRole(['ADMIN'])], patchUser);
+userRouter.patch('/:id([0-9]+)', [checkJwt, checkRole(['ADMIN'])], patchUser);
 
-//Delete one user
-router.delete('/:id([0-9]+)', [checkJwt, checkRole(['ADMIN'])], deleteUser);
+userRouter.delete('/:id([0-9]+)', [checkJwt, checkRole(['ADMIN'])], deleteUser);
 
-export default router;
+export { userRouter };
