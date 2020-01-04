@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { User } from '../../typeorm/entity/user';
 import { validate } from 'class-validator';
-import { UserService } from '../../core/service/userService';
+import { UserService } from './userService';
 
 export const postUser = async (req: Request, res: Response) => {
   const userService = new UserService();

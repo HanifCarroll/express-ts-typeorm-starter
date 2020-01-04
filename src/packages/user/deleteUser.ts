@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
 import { User } from '../../typeorm/entity/user';
-import { UserService } from '../../core/service/userService';
+import { UserService } from './userService';
 
 export const deleteUser = async (req: Request, res: Response) => {
   const userService = new UserService();
