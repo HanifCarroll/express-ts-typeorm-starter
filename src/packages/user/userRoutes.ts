@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { checkJwt, checkRole } from '../../middlewares';
+import { checkJwt, checkRole, wrapAsync } from '../../middlewares';
 import { getUsers } from './getUsers';
 import { getUser } from './getUser';
 import { postUser } from './postUser';
@@ -8,14 +8,14 @@ import { deleteUser } from './deleteUser';
 
 const userRouter = Router();
 
-userRouter.get('/', [checkJwt, checkRole(['ADMIN'])], getUsers);
+userRouter.get('/', [checkJwt, checkRole(['ADMIN'])], wrapAsync(getUsers));
 
-userRouter.get('/:id([0-9]+)', [checkJwt, checkRole(['ADMIN'])], getUser);
+userRouter.get('/:id([0-9]+)', [checkJwt, checkRole(['ADMIN'])], wrapAsync(getUser));
 
-userRouter.post('/', postUser);
+userRouter.post('/', wrapAsync(postUser));
 
-userRouter.patch('/:id([0-9]+)', [checkJwt, checkRole(['ADMIN'])], patchUser);
+userRouter.patch('/:id([0-9]+)', [checkJwt, checkRole(['ADMIN'])], wrapAsync(patchUser));
 
-userRouter.delete('/:id([0-9]+)', [checkJwt, checkRole(['ADMIN'])], deleteUser);
+userRouter.delete('/:id([0-9]+)', [checkJwt, checkRole(['ADMIN'])], wrapAsync(deleteUser));
 
 export { userRouter };

@@ -1,7 +1,7 @@
 {
-   "name": "brahs-media-server",
+   "name": "ts-typeorm-starter",
    "version": "0.0.1",
-   "description": "Awesome project developed with TypeORM.",
+   "description": "Starter template including TS, Express, TypeORM, and JWT auth",
    "devDependencies": {
       "@types/bcryptjs": "^2.4.2",
       "@types/body-parser": "^1.17.1",
