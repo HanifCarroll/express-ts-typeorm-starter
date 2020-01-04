@@ -4,7 +4,7 @@ import config from '../../config/config';
 import { User } from '../../typeorm/entity/user';
 import { UserService } from '../user/userService';
 
-export const login = async (req: Request, res: Response) => {
+export const login = async (req: Request, res: Response): Promise<void> => {
   const userService = new UserService();
   const { username, password } = req.body;
 
@@ -27,9 +27,12 @@ export const login = async (req: Request, res: Response) => {
 
   //Sing JWT, valid for 1 hour
   const token = jwt.sign(
-    { userId: user.id, username: user.username },
+    {
+      userId: user.id,
+      username: user.username,
+    },
     config.jwtSecret,
-    { expiresIn: '1h' }
+    { expiresIn: '1h' },
   );
 
   //Send the jwt in the response

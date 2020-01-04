@@ -3,7 +3,7 @@ import { validate } from 'class-validator';
 import { User } from '../../typeorm/entity/user';
 import { UserService } from '../user/userService';
 
-export const changePassword = async (req: Request, res: Response) => {
+export const changePassword = async (req: Request, res: Response): Promise<void> => {
   const userService = new UserService();
   const id = res.locals.jwtPayload.userId;
   const { oldPassword, newPassword } = req.body;

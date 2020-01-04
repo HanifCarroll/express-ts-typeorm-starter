@@ -1,5 +1,3 @@
-import { config } from 'dotenv';
-config();
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import * as express from 'express';
@@ -9,7 +7,7 @@ import * as cors from 'cors';
 import Routes from './routes';
 
 createConnection()
-  .then(async connection => {
+  .then(async () => {
     const app = express();
 
     app.use(cors());

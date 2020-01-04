@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { User } from '../../typeorm/entity/user';
 import { UserService } from './userService';
 
-export const deleteUser = async (req: Request, res: Response) => {
+export const deleteUser = async (req: Request, res: Response): Promise<void> => {
   const userService = new UserService();
   const id = req.params.id;
   let user: User;

@@ -3,10 +3,10 @@ import { User } from '../../typeorm/entity/user';
 import { validate } from 'class-validator';
 import { UserService } from './userService';
 
-export const postUser = async (req: Request, res: Response) => {
+export const postUser = async (req: Request, res: Response): Promise<void> => {
   const userService = new UserService();
-  let { username, password, role } = req.body;
-  let user = new User();
+  const { username, password, role } = req.body;
+  const user = new User();
   user.username = username;
   user.password = password;
   user.role = role;
@@ -22,9 +22,9 @@ export const postUser = async (req: Request, res: Response) => {
   try {
     await userService.save(user);
   } catch (e) {
-    res.status(409).send("username already in use");
+    res.status(409).send('username already in use');
     return;
   }
 
-  res.status(201).send("User created");
+  res.status(201).send('User created');
 };

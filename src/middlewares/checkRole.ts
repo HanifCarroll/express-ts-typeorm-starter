@@ -1,19 +1,18 @@
-import { Request, Response, NextFunction } from "express";
-import { getRepository } from "typeorm";
-
-import { User } from "../typeorm/entity/user";
+import { Request, Response, NextFunction } from 'express';
+import { User } from '../typeorm/entity/user';
+import { UserService } from '../packages/user/userService';
 
 export const checkRole = (roles: Array<string>) => {
-  return async (req: Request, res: Response, next: NextFunction) => {
+  return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     //Get the user ID from previous midleware
     const id = res.locals.jwtPayload.userId;
+    const userService = new UserService();
 
-    //Get user role from the database
-    const userRepository = getRepository(User);
     let user: User;
     try {
-      user = await userRepository.findOneOrFail(id);
-    } catch (id) {
+      user = await userService.findById(id);
+    } catch (err) {
+      console.log('err', err);
       res.status(401).send();
     }
 

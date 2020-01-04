@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { UserService } from './userService';
 
-export const getUser = async (req: Request, res: Response) => {
+export const getUser = async (req: Request, res: Response): Promise<void> => {
   const userService = new UserService();
   const id = Number(req.params.id);
 

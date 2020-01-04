@@ -3,7 +3,7 @@ import { validate } from 'class-validator';
 import { UserService } from './userService';
 import { User } from '../../typeorm/entity/user';
 
-export const patchUser = async (req: Request, res: Response) => {
+export const patchUser = async (req: Request, res: Response): Promise<void> => {
   const userService = new UserService();
   const id = Number(req.params.id);
   const { username, role } = req.body;

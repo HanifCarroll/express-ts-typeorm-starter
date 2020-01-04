@@ -10,7 +10,7 @@ export class UserService {
 
   public async findAll(): Promise<User[]> {
     const users = await this.userRepository.find({
-      select: ['id', 'username', 'role']
+      select: ['id', 'username', 'role'],
     });
 
     return users;
@@ -19,7 +19,7 @@ export class UserService {
   public async findById(id: number | string): Promise<User> {
     const user = await this.userRepository.findOneOrFail({
       where: { id },
-      select: ['id', 'username', 'role']
+      select: ['id', 'username', 'role'],
     });
 
     return user;
@@ -28,7 +28,7 @@ export class UserService {
   public async findByUsername(username: string): Promise<User> {
     const user = await this.userRepository.findOneOrFail({
       where: { username },
-      select: ['id', 'username', 'role'] 
+      select: ['id', 'username', 'role'],
     });
 
     return user;
