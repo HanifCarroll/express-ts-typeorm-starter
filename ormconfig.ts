@@ -8,7 +8,7 @@ module.exports = {
   synchronize: true,
   logging: true,
   entities: ['src/typeorm/entity/*.(js|ts)'],
-  migrations: ['src/typeorm/migration/*(js|ts)'],
+  migrations: ['src/typeorm/migration/*.(js|ts)'],
   subscribers: ['src/subscriber/**/*.(js|ts)'],
   cli: {
     entitiesDir: 'src/typeorm/entity',
