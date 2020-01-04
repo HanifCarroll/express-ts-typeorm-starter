@@ -12,12 +12,10 @@ export const patchUser = async (req: Request, res: Response) => {
   try {
     user = await userService.findById(id);
   } catch (error) {
-    //If not found, send a 404 response
     res.status(404).send('User not found');
     return;
   }
 
-  //Validate the new values on model
   user.username = username;
   user.role = role;
   const errors = await validate(user);
@@ -26,7 +24,6 @@ export const patchUser = async (req: Request, res: Response) => {
     return;
   }
 
-  //Try to save, if fails, that means username already in use
   try {
     await userService.save(user);
   } catch (e) {
