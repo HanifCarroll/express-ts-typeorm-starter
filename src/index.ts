@@ -14,7 +14,11 @@ createConnection()
     app.use(helmet());
     app.use(bodyParser.json());
 
-    app.use('/', routes);
+    app.get('/', (_req, res) => res.json({ success: 'Hooray!' }));
+    app.use('/api', routes);
+    app.get('*', (_req, res) =>
+      res.status(404).json({ error: 'This route does not exist.' }),
+    );
 
     app.listen(3000, () => {
       console.log('Server started on port 3000!');
