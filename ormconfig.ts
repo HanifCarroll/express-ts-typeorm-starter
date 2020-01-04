@@ -7,9 +7,9 @@ module.exports = {
   database: process.env.DB_NAME,
   synchronize: true,
   logging: true,
-  entities: ['src/typeorm/entity/*.(js|ts)'],
-  migrations: ['src/typeorm/migration/*.(js|ts)'],
-  subscribers: ['src/subscriber/**/*.(js|ts)'],
+  entities: ['src/typeorm/entity/*.js', 'src/typeorm/entity/*.ts'],
+  migrations: ['src/typeorm/migration/*.js', 'src/typeorm/migration/*.ts'],
+  subscribers: ['src/subscriber/**/*.js', 'src/subscriber/**/*.ts'],
   cli: {
     entitiesDir: 'src/typeorm/entity',
     migrationsDir: 'src/typeorm/migration',
