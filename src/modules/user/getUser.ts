@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
-import { User } from './user';
+import { User } from '../../typeorm/entity/user';
 
 export const getUser = async (req: Request, res: Response) => {
   //Get the ID from the url

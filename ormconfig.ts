@@ -8,10 +8,10 @@ module.exports = {
   "synchronize": true,
   "logging": true,
    "entities": [
-      "src/entity/**/*.ts"
+      "src/typeorm/entity/*.ts"
    ],
    "migrations": [
-      "src/migration/**/*.ts"
+      "src/typeorm/migration/*.ts"
    ],
    "subscribers": [
       "src/subscriber/**/*.ts"

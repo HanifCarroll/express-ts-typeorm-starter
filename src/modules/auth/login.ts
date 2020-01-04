@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import * as jwt from "jsonwebtoken";
-import config from "../config/config";
 import { getRepository } from 'typeorm';
-import { User } from '../users/user';
+import * as jwt from 'jsonwebtoken';
+import config from '../../config/config';
+import { User } from '../../typeorm/entity/user';
 
 export const login = async (req: Request, res: Response) => {
   //Check if username and password are set
@@ -30,7 +30,7 @@ export const login = async (req: Request, res: Response) => {
   const token = jwt.sign(
     { userId: user.id, username: user.username },
     config.jwtSecret,
-    { expiresIn: "1h" }
+    { expiresIn: '1h' }
   );
 
   //Send the jwt in the response

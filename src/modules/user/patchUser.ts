@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
-import { User } from './user';
+import { User } from '../../typeorm/entity/user';
 import { validate } from 'class-validator';
 
 export const patchUser = async (req: Request, res: Response) => {

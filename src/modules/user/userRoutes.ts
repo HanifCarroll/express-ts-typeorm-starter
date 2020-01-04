@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { checkJwt, checkRole } from '../middlewares';
+import { checkJwt, checkRole } from '../../middlewares';
 import { getUsers } from './getUsers';
 import { getUser } from './getUser';
 import { postUser } from './postUser';

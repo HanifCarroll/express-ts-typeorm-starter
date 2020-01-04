@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
-import { User } from '../users/user';
 import { validate } from 'class-validator';
+import { getRepository } from 'typeorm';
+import { User } from '../../typeorm/entity/user';
 
 export const changePassword = async (req: Request, res: Response) => {
   //Get ID from JWT

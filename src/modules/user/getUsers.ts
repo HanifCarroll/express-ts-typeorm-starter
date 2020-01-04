@@ -1,7 +1,7 @@
 import { Request } from 'express';
 import { Response } from 'express';
 import { getRepository } from 'typeorm';
-import { User } from './user';
+import { User } from '../../typeorm/entity/user';
 
 export const getUsers = async (req: Request, res: Response) => {
     const userRepository = getRepository(User);
