@@ -2,6 +2,13 @@
    "name": "ts-typeorm-starter",
    "version": "0.0.1",
    "description": "Starter template including TS, Express, TypeORM, and JWT auth",
+   "scripts": {
+      "tsc": "tsc",
+      "test": "jest",
+      "start": "set debug=* && ts-node-dev --require dotenv/config  --respawn --transpileOnly ./src/index.ts",
+      "prod": "tsc && node ./build/app.js",
+      "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run"
+   },
    "devDependencies": {
       "@types/bcryptjs": "^2.4.2",
       "@types/body-parser": "^1.17.1",
@@ -34,12 +41,5 @@
       "pg": "^7.3.0",
       "reflect-metadata": "^0.1.10",
       "typeorm": "0.2.22"
-   },
-   "scripts": {
-      "tsc": "tsc",
-      "test": "jest",
-      "start": "set debug=* && ts-node-dev --require dotenv/config  --respawn --transpileOnly ./src/index.ts",
-      "prod": "tsc && node ./build/app.js",
-      "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run"
    }
 }
