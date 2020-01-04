@@ -10,11 +10,10 @@ export const deleteUser = async (req: Request, res: Response) => {
   try {
     user = await userService.findById(id);
   } catch (error) {
-    res.status(404).send("User not found");
+    res.status(404).send('User not found');
     return;
   }
   userService.delete(user);
 
-  //After all send a 204 (no content, but accepted) response
   res.status(204).send();
 };

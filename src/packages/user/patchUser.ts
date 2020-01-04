@@ -13,7 +13,7 @@ export const patchUser = async (req: Request, res: Response) => {
     user = await userService.findById(id);
   } catch (error) {
     //If not found, send a 404 response
-    res.status(404).send("User not found");
+    res.status(404).send('User not found');
     return;
   }
 
@@ -30,9 +30,8 @@ export const patchUser = async (req: Request, res: Response) => {
   try {
     await userService.save(user);
   } catch (e) {
-    res.status(409).send("username already in use");
+    res.status(409).send('Username already in use');
     return;
   }
-  //After all send a 204 (no content, but accepted) response
   res.status(204).send();
 };

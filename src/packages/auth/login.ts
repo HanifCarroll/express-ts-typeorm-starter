@@ -1,21 +1,20 @@
 import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
 import * as jwt from 'jsonwebtoken';
 import config from '../../config/config';
 import { User } from '../../typeorm/entity/user';
+import { UserService } from '../user/userService';
 
 export const login = async (req: Request, res: Response) => {
-  //Check if username and password are set
-  let { username, password } = req.body;
+  const userService = new UserService();
+  const { username, password } = req.body;
+
   if (!(username && password)) {
     res.status(400).send();
   }
 
-  //Get user from database
-  const userRepository = getRepository(User);
   let user: User;
   try {
-    user = await userRepository.findOneOrFail({ where: { username } });
+    user = await userService.findByUsername(username);
   } catch (error) {
     res.status(401).send();
   }
