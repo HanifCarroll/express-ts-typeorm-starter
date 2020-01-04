@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import { User } from '../../typeorm/entity/user';
 import { validate } from 'class-validator';
-import { getRepository } from 'typeorm';
+import { UserService } from '../../core/service/userService';
 
 export const postUser = async (req: Request, res: Response) => {
-  //Get parameters from the body
+  const userService = new UserService();
   let { username, password, role } = req.body;
   let user = new User();
   user.username = username;
@@ -22,9 +22,8 @@ export const postUser = async (req: Request, res: Response) => {
   user.hashPassword();
 
   //Try to save. If fails, the username is already in use
-  const userRepository = getRepository(User);
   try {
-    await userRepository.save(user);
+    await userService.save(user);
   } catch (e) {
     res.status(409).send("username already in use");
     return;

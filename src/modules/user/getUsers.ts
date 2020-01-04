@@ -1,14 +1,11 @@
 import { Request } from 'express';
 import { Response } from 'express';
-import { getRepository } from 'typeorm';
-import { User } from '../../typeorm/entity/user';
+import { UserService } from '../../core/service/userService';
 
 export const getUsers = async (req: Request, res: Response) => {
-    const userRepository = getRepository(User);
-    const users = await userRepository.find({
-      select: ["id", "username", "role"] //We dont want to send the passwords on response
-    });
+  const userService = new UserService();
 
-    //Send the users object
-    res.send(users);
+  const users = await userService.findAll();
+
+  res.send(users);
 };

@@ -1,20 +1,16 @@
 import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
-import { User } from '../../typeorm/entity/user';
 import { validate } from 'class-validator';
+import { UserService } from '../../core/service/userService';
+import { User } from '../../typeorm/entity/user';
 
 export const patchUser = async (req: Request, res: Response) => {
-  //Get the ID from the url
-  const id = req.params.id;
-
-  //Get values from the body
+  const userService = new UserService();
+  const id = Number(req.params.id);
   const { username, role } = req.body;
+  let user: User;
 
-  //Try to find user on database
-  const userRepository = getRepository(User);
-  let user;
   try {
-    user = await userRepository.findOneOrFail(id);
+    user = await userService.findById(id);
   } catch (error) {
     //If not found, send a 404 response
     res.status(404).send("User not found");
@@ -32,7 +28,7 @@ export const patchUser = async (req: Request, res: Response) => {
 
   //Try to save, if fails, that means username already in use
   try {
-    await userRepository.save(user);
+    await userService.save(user);
   } catch (e) {
     res.status(409).send("username already in use");
     return;
