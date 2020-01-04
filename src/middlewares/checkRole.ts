@@ -1,23 +1,26 @@
 import { Request, Response, NextFunction } from 'express';
 import { User } from '../typeorm/entity/user';
 import { UserService } from '../packages/user/userService';
+import { get } from 'lodash';
 
-export const checkRole = (roles: Array<string>) => {
-  return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const checkRole = (roles: Array<string>): Function => {
+  return async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
     //Get the user ID from previous midleware
-    const id = res.locals.jwtPayload.userId;
-    const userService = new UserService();
+    const id = get(res, 'locals.jwtPayload.userId', null);
 
-    let user: User;
-    try {
-      user = await userService.findById(id);
-    } catch (err) {
-      console.log('err', err);
+    if (id) {
+      const userService = new UserService();
+      userService
+        .findById(id)
+        .then((user: User): void => {
+          if (roles.indexOf(user.role) > -1) next();
+        })
+        .catch((err: Error): void => {
+          console.log('err', err);
+          res.status(401).send();
+        });
+    } else {
       res.status(401).send();
     }
-
-    //Check if array of authorized roles includes the user's role
-    if (roles.indexOf(user.role) > -1) next();
-    else res.status(401).send();
   };
 };
